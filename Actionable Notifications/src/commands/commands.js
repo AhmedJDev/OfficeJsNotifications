@@ -68,7 +68,7 @@ async function processOnSendEvent(event) {
     	actionText: 'Open Task Pane',
 			actionType: Office.MailboxEnums.ActionType.ShowTaskPane,
 			commandId: 'msgComposeOpenPaneButton',
-			contextData: JSON.stringify({ someObject: 'SOME TEXT TO PASS'} )
+			contextData: '{"SomeObject": "Test"}'
 		}]
   };
 
