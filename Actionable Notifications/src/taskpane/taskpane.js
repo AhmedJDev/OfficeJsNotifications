@@ -17,21 +17,12 @@ Office.onReady(info => {
     document.getElementById("app-body").style.display = "flex";
     document.getElementById("run").onclick = run;
   }
-	Office.context.mailbox.item.getInitializationContextAsync((asyncResult) => {
-		if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-			const contextData = asyncResult.value;
-			console.log('ASYNC-RESULT: ', asyncResult);
-			console.log(`CONTEXT-DATA 2: ${contextData}`);
-		}
-	});
 });
 
 export async function run() {
-	Office.context.mailbox.item.getInitializationContextAsync((asyncResult) => {
-		if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-			const contextData = asyncResult.value;
-			console.log(`ASYNC-RESULT: ${asyncResult}`)
-			console.log(`CONTEXT-DATA 2: ${contextData}`);
-		}
+	Office.context.mailbox.item.getInitializationContextAsync(function (result) {
+		console.log("Initialization context:");
+		console.log("VALUE:", JSON.parse(result.value));
+		// Note: Use JSON.parse(result.value) to read the result
 	});
 }

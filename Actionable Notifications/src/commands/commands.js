@@ -68,7 +68,7 @@ async function processOnSendEvent(event) {
     	actionText: 'Open Task Pane',
 			actionType: Office.MailboxEnums.ActionType.ShowTaskPane,
 			commandId: 'msgComposeOpenPaneButton',
-			contextData: '{"SomeObject": "Test"}'
+			contextData: JSON.stringify({a: "aValue", b: "bValue"})
 		}]
   };
 
@@ -82,7 +82,10 @@ async function processOnSendEvent(event) {
 
 	await new Promise(resolve => setTimeout(resolve, 3000)); // 3 sec
 
-	Office.context.mailbox.item.notificationMessages.replaceAsync("action", message3);
+	Office.context.mailbox.item.notificationMessages.replaceAsync("action", message3, (result) => {
+		console.log("Added notification:");
+		console.log(result);
+	});
 
   // event.completed();
 }
